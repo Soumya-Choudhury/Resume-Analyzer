@@ -42,6 +42,7 @@ async def analyze_resume(
     resume: UploadFile = File(...),
     jd: str = Form(...)
 ):
+    print("Received request")
     # 1️⃣ Validate input
     if not resume.filename.lower().endswith(".pdf"):
         raise HTTPException(status_code=400, detail="Resume must be a PDF")
