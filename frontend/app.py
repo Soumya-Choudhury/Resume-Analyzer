@@ -1,7 +1,7 @@
 import streamlit as st
 import requests
 
-API_URL = "http://127.0.0.1:8001/api/analyze"
+API_URL = "https://resume-analyzer-fnj1.onrender.com/api/analyze"
 
 st.set_page_config(page_title="Resume Analyzer", layout="wide")
 
