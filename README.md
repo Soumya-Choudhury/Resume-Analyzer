@@ -64,18 +64,23 @@ Resume-Analyzer/
 
 ---
 
-## 🚀 How It Works (High Level)
+## 🚀 How It Works (Simple Explanation)
 
-1. User uploads a **PDF resume** and pastes a **job description**
-2. Resume text is extracted from the PDF
-3. A carefully crafted prompt is sent to the LLM
-4. The LLM analyzes:
+1. The user uploads a **PDF resume** and pastes the **job description** into the app.
+2. The system extracts readable text from the resume file.
+3. This resume text and job description are sent together to a Large Language Model (LLM).
+4. The LLM compares both and evaluates:
 
-   * Skill overlap
-   * Missing requirements
-   * Resume quality
-5. The model returns **structured JSON**
-6. Streamlit displays the results in a clean, point-wise format
+   * How well the resume matches the job requirements
+   * Which skills are already present
+   * Which important skills are missing
+5. The model returns the analysis in a **structured JSON format**.
+6. The frontend displays the results clearly as:
+
+   * Match percentage
+   * Matched skills
+   * Missing skills
+   * Resume improvement suggestions
 
 ---
 
@@ -188,7 +193,7 @@ It reflects how AI systems are actually built and deployed—not just trained.
 ## 👤 Author
 
 **Soumya Choudhury**
-Software Development & AI Enthusiast
+Software Developer | AI & Backend Enthusiast
 
 * GitHub: [https://github.com/Soumya-Choudhury](https://github.com/Soumya-Choudhury)
 * LinkedIn: [https://linkedin.com/in/soumya-choudhury27](https://linkedin.com/in/soumya-choudhury27)
