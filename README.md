@@ -32,27 +32,6 @@ The goal is **not just scoring**, but offering **meaningful insights** that help
 
 ---
 
-## 🏗️ Project Architecture
-
-```
-Resume-Analyzer/
-│
-├── api/
-│   ├── main.py            # FastAPI app entry point
-│   ├── routes.py          # /api/analyze endpoint
-│   └── rag/
-│       └── llm.py         # LLM configuration
-│
-├── frontend/
-│   └── app.py             # Streamlit frontend
-│
-├── requirements.txt
-├── README.md
-└── .env.example           # Environment variable template
-```
-
----
-
 ## ⚙️ Tech Stack
 
 * **Backend**: FastAPI, Uvicorn
