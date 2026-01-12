@@ -46,14 +46,13 @@ if st.button("Analyze Resume"):
         st.text(data.get("raw_output", data["error"]))
         st.stop()
 
-    # ✅ Safe extraction with defaults
+    # Output
     match_percentage = data.get("match_percentage", "N/A")
     matched_skills = data.get("matched_skills", [])
     missing_skills = data.get("missing_skills", [])
     resume_improvements = data.get("resume_improvements", [])
     final_recommendation = data.get("final_recommendation", "Not available")
 
-    # ================= UI =================
 
     st.success("Analysis Complete")
 
