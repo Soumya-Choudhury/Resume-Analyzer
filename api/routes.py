@@ -4,18 +4,12 @@ from langchain_core.messages import HumanMessage
 import json
 import re
 import traceback
-
-
-# RAG imports
 from rag.llm import get_llm
 from rag.embeddings import get_embeddings
 from rag.splitter import split_text
 from rag.vector_store import build_vector_store
 
 router = APIRouter(prefix="/api", tags=["Resume Analyzer"])
-
-
-# ------------------ Helpers ------------------
 
 def extract_text_from_pdf(file: UploadFile) -> str:
     reader = PdfReader(file.file)
@@ -43,14 +37,14 @@ async def analyze_resume(
     jd: str = Form(...)
 ):
     print("Received request")
-    # 1️⃣ Validate input
+    # Validate input
     if not resume.filename.lower().endswith(".pdf"):
         raise HTTPException(status_code=400, detail="Resume must be a PDF")
 
     if not jd.strip():
         raise HTTPException(status_code=400, detail="Job description is empty")
 
-    # 2️⃣ Extract resume text
+    # Extract resume text
     resume_text = extract_text_from_pdf(resume)
     if not resume_text.strip():
         raise HTTPException(
@@ -61,7 +55,7 @@ async def analyze_resume(
 
     jd_text = jd.strip()
 
-    # 3️⃣ RAG Pipeline
+    # RAG Pipeline
     try:
         # Split resume into chunks
         chunks = split_text(resume_text)
@@ -79,7 +73,7 @@ async def analyze_resume(
         raise HTTPException(status_code=500, detail=str(e))
 
 
-    # 4️⃣ Prompt (Grounded with retrieved context)
+    # Prompt (Grounded with retrieved context)
     prompt = f"""
 You are an expert technical recruiter.
 
@@ -103,14 +97,14 @@ Return ONLY valid JSON in EXACT format:
 }}
 """
 
-    # 5️⃣ Invoke LLM
+    # Invoke LLM
     try:
         llm = get_llm()
         response = llm.invoke([HumanMessage(content=prompt)])
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"LLM invocation failed: {str(e)}")
 
-    # 6️⃣ Parse JSON output
+    # Parse JSON output
     try:
         return extract_json(response.content)
     except Exception:
